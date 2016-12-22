@@ -1,9 +1,9 @@
 <html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-	<title>Welcome to Bo Zhao's Homepage</title>
-	<meta content="Bo Zhao, www.zhaobo.me" name="keywords" />
-	<style media="screen" type="text/css">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>Welcome to Bo Zhao's Homepage</title>
+  <meta content="Bo Zhao, www.zhaobo.me" name="keywords" />
+  <style media="screen" type="text/css">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
   border: 0pt none;
   font-family: inherit;
   font-size: 100%;
@@ -71,6 +71,7 @@ strong {
 
 ul { 
   list-style: circle;
+  overflow: hidden
 }
 
 img {
@@ -78,8 +79,8 @@ img {
 }
 
 li {
-  padding-bottom: 0.5em;
-  margin-left: 1.4em;
+  padding-bottom: 0.2em;
+  margin-right: 1.4em;
 }
 
 alert {
@@ -90,7 +91,7 @@ alert {
 }
 
 em, i {
-	font-style:italic;
+  font-style:italic;
 }
 
 div.section {
@@ -116,6 +117,17 @@ div.paper div {
   padding-left: 230px;
 }
 
+div.paper ul li ul li {
+  float: left;
+}
+
+div.paper ul li{
+  list-style: None;
+}
+
+div.paper ol{
+  margin-left: 1em
+}
 img.paper {
   margin-bottom: 0.5em;
   float: left;
@@ -142,6 +154,8 @@ div.paper pre {
 ul.item {
   list-style: none;
 }
+
+
 </style>
 
 <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" /><!--<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>--><!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>--><!--<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>-->
@@ -172,26 +186,42 @@ Currently, I am a visiting scholar with Prof. <a href="https://www.ece.nus.edu.s
 <div class="section">
 <h2 id="papers">Experiences</h2>
 <div class="paper">
-  <ul style="float: left; width: 170px;">
-  <li>2015.09 -- Present</li>
-  <li>2012.09 -- Present</li>
-  <li>2010.09 -- 2012.06</li> 
-  <li>2009.09 -- 2010.02</li>
-  <li>2006.09 -- 2010.06</li>
-  </ul>
-  <ul class="item" style="float: left; width: 360px;"> 
-  <li>National University of Singapore, Singapore</li>
-  <li>Southwest Jiaotong University, China</li>
-  <li>Southwest Jiaotong University, China</li>
-  <li>I-Shou University, Taiwan</li>
-  <li>Southwest Jiaotong University, China</li>
-  </ul>
-  <ul class="item"> 
-  <li>Visting Scholar</li>
-  <li>Ph.D.</li>
-  <li>M.E.</li>
-  <li>Exchange Student</li>
-  <li>B.E.</li>
+  <ul>
+    <li>
+      <ul>
+      <li style="width: 10em">2015.09 -- Present</li>
+      <li style="width: 20em">National University of Singapore, Singapore</li>
+      <li>Visting Scholar</li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+      <li style="width: 10em">2012.09 -- Present</li>
+      <li style="width: 20em">Southwest Jiaotong University, China</li>
+      <li>Ph.D.</li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+      <li style="width: 10em">2009.09 -- 2010.02</li>
+      <li style="width: 20em">Southwest Jiaotong University, China</li>
+      <li>M.E.</li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+      <li style="width: 10em">2009.09 -- 2010.02</li>
+      <li style="width: 20em">I-Shou University, Taiwan</li>
+      <li>Exchange Student</li>
+      </ul>
+    </li>
+    <li>
+      <ul>
+      <li style="width: 10em">2006.09 -- 2010.06</li>
+      <li style="width: 20em">Southwest Jiaotong University, China</li>
+      <li>B.E.</li>
+      </ul>
+    </li>
   </ul>
 </div>
 </div>
@@ -199,7 +229,7 @@ Currently, I am a visiting scholar with Prof. <a href="https://www.ece.nus.edu.s
 <div class="section">
 <h2 id="papers">Research Interests</h2>
 <div class="paper">
-<ul>
+<ul style="">
   <li>Deep Learning, Computer Vision, Image Processing, Data Mining</li>
   <li>Multimedia, Information Retrieval</li>
 </ul>
@@ -210,8 +240,8 @@ Currently, I am a visiting scholar with Prof. <a href="https://www.ece.nus.edu.s
 <h2 id="papers">Journal Papers</h2>
 <div class="paper">
   <ol>
-    <li><strong>Bo Zhao</strong>, Xiao Wu, Jiashi Feng, Qiang Peng, Shuicheng Yan, "Diversified Visual Attention Networks for Fine-Grained Object Classification," <i>Accepted</i>. (SCI, IF: 2.536)</li>
-    <li><strong>Bo Zhao</strong>, Jiashi Feng, Xiao Wu, Shuicheng Yan, "International Journal of Automation and Computing," International Journal of Automation and Computing, 2016. (EI)</li>
+    <li><strong>Bo Zhao</strong>, Xiao Wu, Jiashi Feng, Qiang Peng, Shuicheng Yan, "Diversified Visual Attention Networks for Fine-Grained Object Classification," <i>IEEE Transactions on Multimedia</i>. (SCI, IF: 2.536)</li>
+    <li><strong>Bo Zhao</strong>, Jiashi Feng, Xiao Wu, Shuicheng Yan, "International Journal of Automation and Computing," <i>International Journal of Automation and Computing</i>, 2016. (EI)</li>
     <li><strong>Bo Zhao</strong>, Xiao Wu, Qiang Peng, Shuicheng Yan, "Clothing Cosegmentation for Shopping Images," <i>IEEE Transactions on Multimedia</i>, 2016. (SCI, IF: 2.536)</li>
     <li><strong>Bo Zhao</strong>, Yan Zhu, "Formalizing and Validating the Web Quality Model for Web Source Quality Evaluation," <i>Expert Systems with Applications</i>, 41(7):3306-3312, 2014. (SCI, IF: 2.981)</li>
     <li>Yan Zhu, <strong>Bo Zhao</strong>, "Formalization and Goodness-of-fit Analysis of Web Quality Model," <i>Journal of Southwest Jiaotong University</i>, 47(2):306-312, 2012. (EI)</li>
@@ -243,17 +273,25 @@ Currently, I am a visiting scholar with Prof. <a href="https://www.ece.nus.edu.s
 <div class="section">
 <h2 id="papers">Funds</h2>
 <div class="paper">
-  <ul style="float: left; width: 100px;">
-  <li>2015</li>
-  <li>2013</li>
-  <li>2009</li>
-  <li>2008</li>
-  </ul>
-  <ul class="item"> 
-  <li>Sichuan Provincial Science and Technology Innovation Seeding Fund</li>
-  <li>Sichuan Provincial Science and Technology Innovation Seeding Fund</li>
-  <li>Student Research and Training Project (SRTP) Fund of SWJTU</li>
-  <li>National College Student Innovation and Practice Fund</li>
+  <ul>
+  <li>
+    <ul>
+      <li style="width: 5em">2015</li>
+      <li>Sichuan Provincial Science and Technology Innovation Seeding Fund</li>
+    </ul>
+    <ul>
+      <li style="width: 5em">2013</li>
+      <li>Sichuan Provincial Science and Technology Innovation Seeding Fund</li>
+    </ul>
+    <ul>
+      <li style="width: 5em">2009</li>
+      <li>Student Research and Training Project (SRTP) Fund of SWJTU</li>
+    </ul>
+    <ul>
+      <li style="width: 5em">2008</li>
+      <li>National College Student Innovation and Practice Fund</li>
+    </ul>
+    </li>
   </ul>
 </div>
 </div>
@@ -261,19 +299,29 @@ Currently, I am a visiting scholar with Prof. <a href="https://www.ece.nus.edu.s
 <div class="section">
 <h2 id="papers">Awards</h2>
 <div class="paper">
-  <ul style="float: left; width: 100px;">
-  <li>2015.05</li>
-  <li>2014.12</li>
-  <li>2010.06</li>
-  <li>2008.12</li>
-  <li>2007.12</li>
-  </ul>
-  <ul class="item">
-  <li>Financial Support from China Scholarship Council (CSC) for My Two-year Visiting at NUS</li>
-  <li>National Scholarship</li>
-  <li>Excellent Undergraduate of SWJTU</li>
-  <li>National Scholarship</li>
-  <li>National Scholarship</li>
+  <ul>
+  <li>
+    <ul>
+      <li style="width: 5em">2015.05</li>
+      <li>Financial Support from China Scholarship Council (CSC) for My Two-year Visiting at NUS</li>
+    </ul>
+    <ul>
+      <li style="width: 5em">2014.12</li>
+      <li>National Scholarship</li> 
+    </ul>
+    <ul>
+      <li style="width: 5em">2010.06</li>
+      <li>Excellent Undergraduate of SWJTU</li> 
+    </ul>
+    <ul>
+      <li style="width: 5em">2008.12</li>
+      <li>National Scholarship</li> 
+    </ul>
+    <ul>
+      <li style="width: 5em">2007.12</li>
+      <li>National Scholarship</li> 
+    </ul>
+  </li>
   </ul>
 </div>
 </div>
