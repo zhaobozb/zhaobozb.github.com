@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bo Zhao</title>
-    <link>https://zhaobozb.github.io/</link>
+    <link>https://www.zhaobo.me/</link>
     <description>Recent content on Bo Zhao</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://zhaobozb.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.zhaobo.me/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://zhaobozb.github.io/posts/about/</link>
+      <link>https://www.zhaobo.me/posts/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://zhaobozb.github.io/posts/about/</guid>
+      <guid>https://www.zhaobo.me/posts/about/</guid>
       <description>I&#39;m an applied AI researcher at BMO AI, based in Toronto, Canada. Prior to that, I worked at the University of British Columbia as a Postdoctoral Research Fellow with Prof. Leonid Sigal. I obtained my Ph.D. degree from Southwest Jiaotong University in 2017, supervised by Prof. Xiao Wu. I was also lucky to spent my last two years of my Ph.D. in the Learn­ing and Vi­sion Re­search Group at National University of Singapore as a visiting student with Prof.</description>
     </item>
     
     <item>
       <title>Publications</title>
-      <link>https://zhaobozb.github.io/posts/publications/</link>
+      <link>https://www.zhaobo.me/posts/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://zhaobozb.github.io/posts/publications/</guid>
+      <guid>https://www.zhaobo.me/posts/publications/</guid>
       <description>DwNet: Dense Warp-based Network for Pose-guided Human Video Generation Polina Zablotskaia, Aliaksandr Siarohin, Leonid Sigal, Bo Zhao British Machine Vision Conference (BMVC), 2019 [arXiv]&amp;nbsp;[BibTex]     Image Generation from Layout Bo Zhao, Lili Meng, Weidong Yin, Leonid Sigal IEEE Conference on Computer Vision Pattern Recognition (CVPR), 2019 [arXiv]&amp;nbsp;[BibTex]     Where and when to look? Spatial-temporal attention for action recognition in videos Lili Meng, Bo Zhao, Bo Chang, Gao Huang, Frederick Tung, Leonid Sigal arXiv preprint, 2018 [arXiv]&amp;nbsp;[BibTex]     Modular Generative Adversarial Networks Bo Zhao, Bo Chang, Zequn Jie, Leonid Sigal European Conference on Computer Vision (ECCV), 2018 [arXiv]&amp;nbsp;[BibTex]     Multi-View Image Generation from a Single-View Bo Zhao, Xiao Wu, Zhi-Qi Cheng, Hao Liu, Zequn Jie, Jiashi Feng ACM Multimedia (MM), 2018 [Paper]&amp;nbsp;[BibTex]     Interpretable Multimodal Retrieval for Fashion Products Lizi Liao, Xiangnan He, Bo Zhao, Chong-Wah Ngo, Tat-Seng Chua ACM MM, 2018 [Paper]&amp;nbsp;[BibTex]     Left-Right Comparative Recurrent Model for Stereo Matching Zequn Jie, Pengfei Wang, Yonggen Ling, Bo Zhao, Yunchao Wei, Jiashi Feng, Wei Liu IEEE Conference on Computer Vision Pattern Recognition (CVPR), 2018 [arXiv]&amp;nbsp;[BibTex]     Sketch Recognition with Deep Visual-Sequential Fusion Model Jun-Yan He, Xiao Wu, Yu-Gang Jiang, Bo Zhao, Qiang Peng ACM Multimedia (MM), 2017 [Paper]&amp;nbsp;[BibTex]     Neural Person Search Machines Hao Liu, Jiashi Feng, Zequn Jie, Karlekar Jayashree, Bo Zhao, Meibin Qi, Jianguo Jiang, Shuicheng Yan International Conference on Computer Vision (ICCV), 2017 [arXiv]&amp;nbsp;[BibTex]     Memory-Augmented Attribute Manipulation Networks for Interactive Fashion Search Bo Zhao, Jiashi Feng, Xiao Wu, Shuicheng Yan IEEE Conference on Computer Vision Pattern Recognition (CVPR), 2017 [Paper]&amp;nbsp;[BibTex]     Diversified Visual Attention Networks for Fine-Grained Object Classification Bo Zhao, Xiao Wu, Jiashi Feng, Qiang Peng, Shuicheng Yan IEEE Transactions on Multimedia, 2016 (SCI, IF: 2.</description>
     </item>
     
