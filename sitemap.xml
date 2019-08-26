@@ -7,10 +7,6 @@
   </url>
   
   <url>
-    <loc>https://www.zhaobo.me/</loc>
-  </url>
-  
-  <url>
     <loc>https://www.zhaobo.me/categories/</loc>
   </url>
   
@@ -24,6 +20,10 @@
   
   <url>
     <loc>https://www.zhaobo.me/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.zhaobo.me/</loc>
   </url>
   
 </urlset>
