@@ -1,0 +1,29 @@
+baseURL = "https://www.zhaobo.me/"
+languageCode = "en-us"
+title = "Bo Zhao"
+theme = "redlounge"
+
+[params]
+	sidebartitle = "Bo Zhao"
+	sidebartagline1 = "Applied AI Researcher"
+	sidebartagline2 = "Bank of Montreal"
+	sidebarphoto = "/images/zhaobo.png"
+
+[[menu.main]]
+    name = "Email"
+    url = "mailto:zhaobo.cs@gmail.com"
+[[menu.main]]
+    name = "CV"
+    url = "/cv_zhaobo.pdf"
+[[menu.social]]
+	pre = "<i class='fa fa-github'></i>"
+    url = "https://github.com/zhaobozb"
+    identifier = "github"
+[[menu.social]]
+	pre = "<i class='fa fa-linkedin'></i>"
+    url = "https://www.linkedin.com/in/zhaobozb/"
+    identifier = "linkedin"
+[[menu.social]]
+	pre = "<i class='fa fa-graduation-cap'></i>"
+    url = "https://scholar.google.com/citations?user=a8OCiUEAAAAJ"
+    identifier = "google"
