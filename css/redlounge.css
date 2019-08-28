@@ -201,7 +201,7 @@ a.post-author {
 	font-size: 0.9rem;
 }
 .post {
-    padding-bottom: 1.8rem;
+    padding-bottom: 0.5rem;
     line-height: 1.75rem;
 }
 .post p {
@@ -511,15 +511,15 @@ div.spanner {
 div.paper {
 	clear: both;
 	margin-top: 0.5em;
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
 	/*border: 1px solid #ddd;*/
 	/* background: #fff; */
-	padding: 0.5em 1em 0.5em 1.3em;
+	padding: 0em 0em 0em 0em;
 	/* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); */
 }
 
 img.paper {
-	margin-bottom: 2.5em;
+	margin-bottom: 1.5em;
 	margin-right: 2em;
 	float: left;
 	width: 200px;
@@ -530,4 +530,8 @@ span.blurb {
 	display:block;
 	margin-top:0.75em;
 	margin-bottom:0.5em;
+}
+
+div.paper > div:nth-child(2) {
+	line-height: 1.2rem;
 }
