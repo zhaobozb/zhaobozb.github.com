@@ -28,6 +28,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Stamp last-updated date
+        # Writes the latest commit's date into the homepage footer so it never needs hand-editing.
+        run: |
+          iso=$(git log -1 --format=%cs)
+          human=$(date -u -d "$iso" '+%B %-d, %Y')
+          year=${iso%%-*}
+          sed -i -E \
+            -e "s#<time class=\"last-updated\" datetime=\"[^\"]*\">[^<]*</time>#<time class=\"last-updated\" datetime=\"$iso\">$human</time>#" \
+            -e "s#<span class=\"copyright-year\">[^<]*</span>#<span class=\"copyright-year\">$year</span>#" \
+            index.html
+          grep -q "datetime=\"$iso\">$human</time>" index.html || { echo "::error::Footer date placeholder not found in index.html"; exit 1; }
+          echo "Footer stamped: $human"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
