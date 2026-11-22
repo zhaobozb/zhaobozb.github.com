@@ -140,7 +140,7 @@ body.homepage {
 
 .homepage .post {
   width: 100%;
-  max-width: 860px;
+  max-width: 780px;
   padding: 0 0 1.5rem;
   line-height: 1.8;
 }
@@ -214,7 +214,7 @@ body.homepage {
   object-fit: contain;
 }
 
-.homepage .paper > div:nth-child(2) {
+.homepage .paper > .paper-details {
   grid-column: 2;
   min-width: 0;
   color: var(--home-muted);
@@ -222,26 +222,29 @@ body.homepage {
   line-height: 1.65;
 }
 
-.homepage .paper strong {
+.homepage .paper-title {
+  display: block;
+  margin: 0 0 0.25rem;
   color: var(--home-ink);
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1.45;
 }
 
-.homepage .paper > div:nth-child(2) > strong:first-child {
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.homepage .paper font[size="2"] {
-  display: block;
-  margin-top: 0;
+.homepage .paper .paper-authors,
+.homepage .paper .paper-venue {
+  margin: 0 0 0.25rem;
   color: var(--home-muted);
   font-size: 0.94rem;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-.homepage .paper font[size="2"] > br:first-child {
-  display: none;
+.homepage .paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.85rem;
+  margin-top: 0.25rem;
+  font-size: 0.94rem;
 }
 
 .homepage .paper .spanner {
@@ -272,17 +275,17 @@ body.homepage {
 
   .homepage .header {
     margin: 0 auto;
-    padding: 1.8rem 1.25rem 1.5rem;
+    padding: 1.4rem 1.25rem 1.1rem;
   }
 
   .homepage .header > .sidebarphoto {
-    width: 96px;
-    height: 96px;
+    width: 88px;
+    height: 88px;
   }
 
   .homepage h1.brand-title {
-    margin-top: 0.8rem;
-    font-size: 1.9rem;
+    margin-top: 0.65rem;
+    font-size: 1.75rem;
   }
 
   .homepage h2.brand-affiliation {
@@ -290,11 +293,15 @@ body.homepage {
   }
 
   .homepage .nav {
-    margin-top: 1.1rem;
+    margin-top: 0.85rem;
   }
 
   .homepage .nav-list {
-    padding-bottom: 0.3rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .homepage .social-buttons {
+    margin-top: 0.7rem;
   }
 
   .homepage .content.pure-u-1.pure-u-md-3-4 {
@@ -333,7 +340,7 @@ body.homepage {
 
   .homepage .paper > .thumbnail,
   .homepage .paper > img.paper,
-  .homepage .paper > div:nth-child(2) {
+  .homepage .paper > .paper-details {
     grid-column: 1;
   }
 
