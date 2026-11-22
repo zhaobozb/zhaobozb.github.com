@@ -11,6 +11,29 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <script>
+    /* Start in dark mode; retain any theme the visitor chooses with the top-bar button. */
+    (function () {
+      var root = document.documentElement;
+      var COLORS = { light: '#fafaf9', dark: '#111214' };
+      function saved() { try { return localStorage.getItem('theme'); } catch (e) { return null; } }
+      function set(theme) {
+        root.setAttribute('data-theme', theme);
+        var metas = document.querySelectorAll('meta[name="theme-color"]');
+        for (var i = 0; i < metas.length; i++) metas[i].setAttribute('content', COLORS[theme]);
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+      set(saved() || 'dark');
+      document.addEventListener('DOMContentLoaded', function () { set(root.getAttribute('data-theme')); });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest || !e.target.closest('.theme-toggle')) return;
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('theme', next); } catch (err) {}
+        set(next);
+      });
+    })();
+  </script>
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Bo Zhao — Lead Applied AI Researcher">
@@ -59,6 +82,9 @@
     <symbol id="i-forecast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M16 8h4v4"/></symbol>
     <symbol id="i-graph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M10.8 7.2 6.2 16.8M13.2 7.2l4.6 9.6M7.5 19h9"/></symbol>
     <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z"/></symbol>
     <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
@@ -70,12 +96,18 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="topbar-name" href="#top">Bo Zhao</a>
-      <nav aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#publications">Publications</a>
-        <a href="CV-ZB-20260206.pdf">CV</a>
-      </nav>
+      <div class="topbar-actions">
+        <nav aria-label="Sections">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#publications">Publications</a>
+          <a href="CV-ZB-20260206.pdf">CV</a>
+        </nav>
+        <button type="button" class="theme-toggle" aria-label="Switch theme" title="Toggle light/dark theme">
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -85,6 +117,7 @@
       <div class="hero-text">
         <div class="hero-name-row">
           <h1 id="name">Bo Zhao</h1>
+          <span class="name-chinese" lang="zh-Hans" aria-label="Chinese name: Zhao Bo">赵波</span>
           <nav class="profile-links" aria-label="Contact and professional profiles">
             <a class="profile-link" href="mailto:zhaobo.cs@gmail.com" aria-label="Email Bo Zhao" title="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
             <a class="profile-link" href="https://scholar.google.com/citations?user=a8OCiUEAAAAJ" aria-label="Google Scholar" title="Google Scholar" rel="me noopener"><svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg></a>
@@ -104,29 +137,33 @@
     <section class="section prose" id="about" aria-labelledby="about-title">
       <h2 id="about-title">About</h2>
       <p>
-        I lead applied AI research at the intersection of frontier modeling and financial services. With more than eight years of experience, I build financial foundation models and translate advances in AI into scalable solutions for regulated banking. I have led cross-functional teams in bringing award-winning AI products from research to deployment, reaching more than 2&nbsp;million users.
+        I'm a Lead Applied AI Researcher at the BMO Institute for Applied AI &amp; Quantum, where I lead a team of AI engineers and data scientists building financial foundation models and generative AI systems for banking. My work spans representation learning on transaction and client data, time-series forecasting, and LLM systems such as GraphRAG, with a focus on moving research into regulated production.
       </p>
       <p>
-        My research background spans computer vision and generative modeling. I was a Postdoctoral Research Fellow at the <a href="https://www.ubc.ca">University of British Columbia</a> and <a href="https://vectorinstitute.ai">Vector Institute</a>, working with Prof. <a href="https://www.cs.ubc.ca/~lsigal/">Leonid Sigal</a>. I earned my Ph.D. from <a href="https://www.swjtu.edu.cn">Southwest Jiaotong University</a> in 2017 under the supervision of Prof. <a href="https://scholar.google.com/citations?user=Yt70KEIAAAAJ">Xiao Wu</a>. During the final two years of my doctoral studies, I was a visiting researcher with the <a href="http://www.lv-nus.org/">Learning and Vision Research Group</a> at the <a href="https://www.nus.edu.sg">National University of Singapore</a>, advised by Profs. <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ&amp;hl=en">Jiashi Feng</a> and <a href="https://yanshuicheng.info/">Shuicheng Yan</a>.
+        Since joining BMO in 2019, I've shipped award-winning AI products across banking. Much of my industry work is confidential, so this page lists only public outcomes.
+      </p>
+      <p>
+        Before BMO, I worked on computer vision and generative modeling as a Postdoctoral Research Fellow at the <a href="https://www.ubc.ca">University of British Columbia</a> and the <a href="https://vectorinstitute.ai">Vector Institute</a> with Prof. <a href="https://www.cs.ubc.ca/~lsigal/">Leonid Sigal</a>, and at Disney Research. I received my Ph.D. in 2017 through a joint program between <a href="https://www.swjtu.edu.cn">Southwest Jiaotong University</a> and the <a href="https://www.nus.edu.sg">National University of Singapore</a>, advised by Prof. <a href="https://scholar.google.com/citations?user=Yt70KEIAAAAJ">Xiao Wu</a> and by Profs. <a href="https://scholar.google.com/citations?user=Q8iay0gAAAAJ&amp;hl=en">Jiashi Feng</a> and <a href="https://yanshuicheng.info/">Shuicheng Yan</a> in the <a href="http://www.lv-nus.org/">Learning and Vision Research Group</a>.
       </p>
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
-      <h2 id="work-title">Financial Foundation Models</h2>
+      <h2 id="work-title">Work at BMO</h2>
       <p class="section-intro">
-        At BMO, I build foundation models for banking: models pretrained on financial data such as transactions, client activity and time series, so that one model can support many products instead of each team starting from scratch.
+        Selected work across financial foundation models, graph learning, LLM systems, and cash-flow forecasting.
       </p>
 
       <div class="work-grid">
         <article class="work-card">
           <div class="work-card-heading">
-            <span class="work-icon" aria-hidden="true"><svg><use href="#i-forecast"/></svg></span>
-            <h3>CashTrack</h3>
+            <span class="work-icon" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
+            <h3>Financial Foundation Models</h3>
           </div>
-          <p>A cash-flow forecasting product that helps BMO clients anticipate account balances. I led its development end to end, from time-series modeling to scalable cloud deployment.</p>
-          <ul class="pills pills-compact" aria-label="Capabilities">
-            <li>Cash-flow forecasting</li>
-            <li>Time-series modeling</li>
+          <p>I pretrain models on transaction, time-series and tabular banking data so that new prediction and forecasting tasks start from shared representations instead of hand-built features.</p>
+          <ul class="pills pills-compact" aria-label="Data types">
+            <li>Transactions</li>
+            <li>Time series</li>
+            <li>Tabular</li>
           </ul>
         </article>
         <article class="work-card">
@@ -142,26 +179,37 @@
         </article>
         <article class="work-card">
           <div class="work-card-heading">
-            <span class="work-icon" aria-hidden="true"><svg><use href="#i-layers"/></svg></span>
-            <h3>Foundation Models for Banking Data</h3>
+            <span class="work-icon" aria-hidden="true"><svg><use href="#i-bot"/></svg></span>
+            <h3>GraphRAG &amp; LLM Agents</h3>
           </div>
-          <p>I pretrain models across transaction, time-series, and tabular banking data, giving new prediction and forecasting tasks a shared starting point.</p>
-          <ul class="pills pills-compact" aria-label="Data types">
-            <li>Transactions</li>
-            <li>Time series</li>
-            <li>Tabular</li>
+          <p>I lead enterprise GraphRAG work that lets LLMs reason across financial knowledge graphs, giving more grounded answers with fewer hallucinations. I also designed a tool-using agent that queries data and APIs for home-finance scenario planning.</p>
+          <ul class="pills pills-compact" aria-label="Methods">
+            <li>GraphRAG</li>
+            <li>Knowledge graphs</li>
+            <li>LLM agents</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-card-heading">
+            <span class="work-icon" aria-hidden="true"><svg><use href="#i-forecast"/></svg></span>
+            <h3>CashTrack</h3>
+          </div>
+          <p>I led CashTrack from time-series modeling through scalable cloud deployment. It helps BMO clients anticipate account balances and serves more than 2 million users.</p>
+          <ul class="pills pills-compact" aria-label="Capabilities">
+            <li>Cash-flow forecasting</li>
+            <li>Time-series modeling</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <section class="section" id="highlights" aria-labelledby="highlights-title">
-      <h2 id="highlights-title">Highlights</h2>
+    <section class="section" id="recognition" aria-labelledby="recognition-title">
+      <h2 id="recognition-title">Recognition</h2>
       <ol class="highlights">
         <li><span class="hl-year">2025</span><p><strong>Global AI Award</strong>, The Digital Banker, for home-finance forecasting at BMO</p></li>
-        <li><span class="hl-year">2025</span><p><strong>U.S. Patent 12,299,727 B2</strong>: Artificial Intelligence Modeling to Predict Electronic Account Data</p></li>
+        <li><span class="hl-year">2025</span><p><strong>U.S. Patent 12,299,727 B2</strong> (co-inventor): Artificial Intelligence Modeling to Predict Electronic Account Data</p></li>
         <li><span class="hl-year">2021</span><p><strong>Celent Model Bank Award</strong> for CashTrack</p></li>
-        <li><span class="hl-year">2020</span><p><strong>BAI Award</strong> for CashTrack</p></li>
+        <li><span class="hl-year">2020</span><p><strong>BAI Global Innovation Award</strong> for CashTrack</p></li>
         <li><span class="hl-year">2019</span><p><strong>CVPR oral presentation</strong> (top ~5%) for <a href="#layout2im">Image Generation from Layout</a></p></li>
       </ol>
     </section>

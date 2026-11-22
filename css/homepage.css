@@ -1,5 +1,5 @@
 /* Homepage — self-contained stylesheet (no framework, no web fonts).
-   Light/dark follow the OS setting via prefers-color-scheme. */
+   Light/dark follow the OS setting; the top-bar button can override it (see head script). */
 
 :root {
   --bg: #fafaf9;
@@ -20,8 +20,29 @@
   --topbar-h: 3.5rem;
 }
 
+/* Dark palette: applied when the visitor picks dark (data-theme, set by the head script),
+   or when the OS is dark and no script has run. Keep both blocks in sync. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111214;
+  --surface: #18191c;
+  --ink: #f4f4f5;
+  --text: #c4c4cc;
+  --muted: #8f8f99;
+  --line: #2a2b30;
+  --accent: #f0a37c;
+  --accent-soft: #3a2418;
+  --thumb-bg: #f4f4f5;
+  --header-bg: rgb(17 18 20 / 0.75);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
+    color-scheme: dark;
     --bg: #111214;
     --surface: #18191c;
     --ink: #f4f4f5;
@@ -159,6 +180,44 @@ a {
   text-decoration: none;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Show the moon in light mode (click for dark) and the sun in dark mode.
+   Without JavaScript there is no data-theme, so the button is hidden. */
+:root:not([data-theme]) .theme-toggle,
+:root[data-theme="dark"] .icon-moon,
+:root[data-theme="light"] .icon-sun {
+  display: none;
+}
+
 .topbar nav {
   display: flex;
   gap: 1.5rem;
@@ -242,6 +301,15 @@ a {
   font-size: clamp(2.25rem, 5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.035em;
+}
+
+.name-chinese {
+  padding-bottom: 0.38rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .hero-name-row {
@@ -416,6 +484,13 @@ a {
   padding-top: 0.85rem;
 }
 
+.pills-compact li.pill-accent {
+  border-color: transparent;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .pills-compact li {
   padding: 0.1rem 0.5rem;
   color: var(--muted);
@@ -425,7 +500,7 @@ a {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -729,6 +804,10 @@ a {
     gap: 1rem;
   }
 
+  .topbar-actions {
+    gap: 0.75rem;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -770,6 +849,26 @@ a {
 
   .pub-thumb {
     aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .topbar-inner {
+    gap: 0.5rem;
+  }
+
+  .topbar nav {
+    gap: 0.7rem;
+    font-size: 0.8125rem;
+  }
+
+  .topbar-actions {
+    gap: 0.5rem;
+  }
+
+  .theme-toggle {
+    width: 1.85rem;
+    height: 1.85rem;
   }
 }
 
