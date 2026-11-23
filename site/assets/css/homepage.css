@@ -330,7 +330,10 @@ a {
 .name-details {
   display: flex;
   align-items: flex-end;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
   gap: 0.45rem;
+  white-space: nowrap;
 }
 
 .role {
@@ -367,6 +370,8 @@ a {
 .profile-links {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
   gap: 0.2rem;
 }
 
