@@ -872,13 +872,13 @@ a {
 
 @media (min-width: 641px) and (max-width: 900px) {
   .hero {
-    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-columns: clamp(120px, 22vw, 168px) minmax(0, 1fr);
     max-width: none;
   }
 
   .avatar {
-    width: 120px;
-    height: 120px;
+    width: clamp(120px, 22vw, 168px);
+    height: clamp(120px, 22vw, 168px);
   }
 
   .work-grid {
