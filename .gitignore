@@ -1,1 +1,21 @@
 .DS_Store
+._*
+Thumbs.db
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+
+# Local development environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editor and temporary files
+*.swp
+*.swo
+*~
+.venv/

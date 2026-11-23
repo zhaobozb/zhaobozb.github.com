@@ -1,28 +1,9 @@
 /* Homepage — self-contained stylesheet (no framework, no web fonts).
-   Light/dark follow the OS setting; the top-bar button can override it (see head script). */
+   Dark is the default for everyone, regardless of OS setting. The top-bar button
+   switches to light by setting data-theme="light" on <html> (see head script in index.html). */
 
+/* Default palette: dark. Also used when JavaScript is off. */
 :root {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --ink: #18181b;
-  --text: #3f3f46;
-  --muted: #71717a;
-  --line: #e7e5e4;
-  --accent: #b4542a;
-  --accent-soft: #f6e7df;
-  --thumb-bg: #ffffff;
-  --header-bg: rgb(250 250 249 / 0.78);
-
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
-  --measure: 76rem;
-  --radius: 12px;
-  --topbar-h: 3.5rem;
-}
-
-/* Dark palette: applied when the visitor picks dark (data-theme, set by the head script),
-   or when the OS is dark and no script has run. Keep both blocks in sync. */
-:root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #111214;
   --surface: #18191c;
@@ -34,26 +15,27 @@
   --accent-soft: #3a2418;
   --thumb-bg: #f4f4f5;
   --header-bg: rgb(17 18 20 / 0.75);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  --measure: 76rem;
+  --radius: 12px;
+  --topbar-h: 3.5rem;
 }
 
+/* Light palette: only when the visitor picks it with the toggle. */
 :root[data-theme="light"] {
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    color-scheme: dark;
-    --bg: #111214;
-    --surface: #18191c;
-    --ink: #f4f4f5;
-    --text: #c4c4cc;
-    --muted: #8f8f99;
-    --line: #2a2b30;
-    --accent: #f0a37c;
-    --accent-soft: #3a2418;
-    --thumb-bg: #f4f4f5;
-    --header-bg: rgb(17 18 20 / 0.75);
-  }
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --ink: #18181b;
+  --text: #3f3f46;
+  --muted: #71717a;
+  --line: #e7e5e4;
+  --accent: #b4542a;
+  --accent-soft: #f6e7df;
+  --thumb-bg: #ffffff;
+  --header-bg: rgb(250 250 249 / 0.78);
 }
 
 /* ---------- Base ---------- */
@@ -265,6 +247,28 @@ a {
 
 .section-head h2 {
   margin-bottom: 0;
+}
+
+.pubs-stats {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.pubs-stats a {
+  color: var(--text);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.pubs-stats strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pubs-stats a:hover,
+.pubs-stats a:hover strong {
+  color: var(--accent);
 }
 
 .section-aside {

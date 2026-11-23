@@ -8,9 +8,8 @@
   <meta name="author" content="Bo Zhao">
   <link rel="canonical" href="https://www.zhaobo.me/">
 
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#111214">
   <script>
     /* Start in dark mode; retain any theme the visitor chooses with the top-bar button. */
     (function () {
@@ -113,7 +112,7 @@
 
   <main id="main" class="page">
     <section class="hero" id="top" aria-labelledby="name">
-      <img class="avatar" src="images/zhaobo.jpg" width="512" height="512" alt="Portrait of Bo Zhao">
+      <img class="avatar" src="images/optimized/zhaobo.jpg" width="512" height="512" alt="Portrait of Bo Zhao">
       <div class="hero-text">
         <div class="hero-name-row">
           <h1 id="name">Bo Zhao</h1>
@@ -148,7 +147,7 @@
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
-      <h2 id="work-title">Work at BMO</h2>
+      <h2 id="work-title">Work</h2>
       <p class="section-intro">
         Selected work across financial foundation models, graph learning, LLM systems, and cash-flow forecasting.
       </p>
@@ -194,7 +193,7 @@
             <span class="work-icon" aria-hidden="true"><svg><use href="#i-forecast"/></svg></span>
             <h3>CashTrack</h3>
           </div>
-          <p>I led CashTrack from time-series modeling through scalable cloud deployment. It helps BMO clients anticipate account balances and serves more than 2 million users.</p>
+          <p>I led CashTrack from time-series modeling through scalable cloud deployment. It helps bank clients anticipate account balances and serves more than 2 million users.</p>
           <ul class="pills pills-compact" aria-label="Capabilities">
             <li>Cash-flow forecasting</li>
             <li>Time-series modeling</li>
@@ -206,17 +205,20 @@
     <section class="section" id="recognition" aria-labelledby="recognition-title">
       <h2 id="recognition-title">Recognition</h2>
       <ol class="highlights">
-        <li><span class="hl-year">2025</span><p><strong>Global AI Award</strong>, The Digital Banker, for home-finance forecasting at BMO</p></li>
+        <li><span class="hl-year">2025</span><p><strong>Global AI Award</strong>, The Digital Banker, for home-finance forecasting</p></li>
         <li><span class="hl-year">2025</span><p><strong>U.S. Patent 12,299,727 B2</strong> (co-inventor): Artificial Intelligence Modeling to Predict Electronic Account Data</p></li>
         <li><span class="hl-year">2021</span><p><strong>Celent Model Bank Award</strong> for CashTrack</p></li>
         <li><span class="hl-year">2020</span><p><strong>BAI Global Innovation Award</strong> for CashTrack</p></li>
-        <li><span class="hl-year">2019</span><p><strong>CVPR oral presentation</strong> (top ~5%) for <a href="#layout2im">Image Generation from Layout</a></p></li>
       </ol>
     </section>
 
     <section class="section" id="publications" aria-labelledby="pubs-title">
       <div class="section-head">
-        <h2 id="pubs-title">Publications</h2>
+        <div>
+          <h2 id="pubs-title">Publications</h2>
+          <!-- Rounded down on purpose so it stays true as citations grow. Last checked: Nov 2026 (2,894 citations, h-index 17). -->
+          <p class="pubs-stats"><a href="https://scholar.google.com/citations?user=a8OCiUEAAAAJ" rel="me noopener"><strong>2,800+</strong> citations · h-index <strong>17</strong></a> on Google Scholar</p>
+        </div>
         <div class="pub-filter" role="radiogroup" aria-label="Show publications">
           <input type="radio" name="pub-filter" id="pf-selected" checked>
           <label for="pf-selected">Selected</label>
@@ -229,7 +231,7 @@
         <h3 class="year">2019</h3>
         <ol class="pubs">
           <li class="pub" id="dwnet">
-            <img class="pub-thumb" src="images/dwnet.jpg" width="873" height="308" loading="lazy" decoding="async" alt="DwNet pose-guided human video generation illustration">
+            <img class="pub-thumb" src="images/optimized/dwnet.jpg" width="873" height="308" loading="lazy" decoding="async" alt="DwNet pose-guided human video generation illustration">
             <div class="pub-body">
               <h4 class="pub-title">DwNet: Dense Warp-based Network for Pose-guided Human Video Generation</h4>
               <p class="pub-authors">Polina Zablotskaia, Aliaksandr Siarohin, <span class="me">Bo Zhao</span>, Leonid Sigal</p>
@@ -241,12 +243,13 @@
             </div>
           </li>
           <li class="pub is-selected" id="layout2im">
-            <img class="pub-thumb" src="images/layout2im.jpg" width="643" height="269" loading="lazy" decoding="async" alt="Example image generated from a scene layout">
+            <img class="pub-thumb" src="images/optimized/layout2im.jpg" width="643" height="269" loading="lazy" decoding="async" alt="Example image generated from a scene layout">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">Image Generation from Layout</h4>
               <p class="pub-authors"><span class="me">Bo Zhao</span>, Lili Meng, Weidong Yin, Leonid Sigal</p>
               <p class="pub-venue"><span class="tag">CVPR</span><span class="tag">IJCV</span>CVPR 2019; International Journal of Computer Vision, 2020</p>
+              <p class="pub-award"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>CVPR Oral Presentation (top ~5%)</p>
               <ul class="pub-links">
                 <li><a href="https://arxiv.org/abs/1811.11389">CVPR</a></li>
                 <li><a href="https://rdcu.be/b18D3">IJCV</a></li>
@@ -262,7 +265,7 @@
         <h3 class="year">2018</h3>
         <ol class="pubs">
           <li class="pub" id="wwl">
-            <img class="pub-thumb" src="images/wwl.jpg" width="1082" height="352" loading="lazy" decoding="async" alt="Spatial-temporal attention visualization for video action recognition">
+            <img class="pub-thumb" src="images/optimized/wwl.jpg" width="1082" height="352" loading="lazy" decoding="async" alt="Spatial-temporal attention visualization for video action recognition">
             <div class="pub-body">
               <h4 class="pub-title">Where and When to Look? Spatial-temporal Attention for Action Recognition in Videos</h4>
               <p class="pub-authors">Lili Meng, <span class="me">Bo Zhao</span>, Bo Chang, Gao Huang, Frederick Tung, Leonid Sigal</p>
@@ -274,7 +277,7 @@
             </div>
           </li>
           <li class="pub is-selected" id="mgan">
-            <img class="pub-thumb" src="images/mgan.jpg" width="2702" height="937" loading="lazy" decoding="async" alt="Modular Generative Adversarial Networks architecture">
+            <img class="pub-thumb" src="images/optimized/mgan.jpg" width="1600" height="555" loading="lazy" decoding="async" alt="Modular Generative Adversarial Networks architecture">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">Modular Generative Adversarial Networks</h4>
@@ -287,12 +290,13 @@
             </div>
           </li>
           <li class="pub is-selected" id="iccv_varigan">
-            <img class="pub-thumb" src="images/iccv_varigan.jpg" width="1022" height="594" loading="lazy" decoding="async" alt="Generated multi-view image examples">
+            <img class="pub-thumb" src="images/optimized/iccv_varigan.jpg" width="1022" height="594" loading="lazy" decoding="async" alt="Generated multi-view image examples">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">Multi-View Image Generation from a Single-View</h4>
               <p class="pub-authors"><span class="me">Bo Zhao</span>, Xiao Wu, Zhi-Qi Cheng, Hao Liu, Zequn Jie, Jiashi Feng</p>
               <p class="pub-venue"><span class="tag">MM</span>ACM Multimedia</p>
+              <p class="pub-award"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>ACM MM Oral Presentation (top 8.5%)</p>
               <ul class="pub-links">
                 <li><a href="papers/mm_varigan.pdf">Paper</a></li>
                 <li><a href="bibs/varigan.bib">BibTeX</a></li>
@@ -312,7 +316,7 @@
             </div>
           </li>
           <li class="pub" id="cvpr_lrcrm">
-            <img class="pub-thumb" src="images/cvpr_lrcrm.jpg" width="1181" height="531" loading="lazy" decoding="async" alt="Stereo matching results from the left-right comparative model">
+            <img class="pub-thumb" src="images/optimized/cvpr_lrcrm.jpg" width="1181" height="531" loading="lazy" decoding="async" alt="Stereo matching results from the left-right comparative model">
             <div class="pub-body">
               <h4 class="pub-title">Left-Right Comparative Recurrent Model for Stereo Matching</h4>
               <p class="pub-authors">Zequn Jie, Pengfei Wang, Yonggen Ling, <span class="me">Bo Zhao</span>, Yunchao Wei, Jiashi Feng, Wei Liu</p>
@@ -330,7 +334,7 @@
         <h3 class="year">2017</h3>
         <ol class="pubs">
           <li class="pub" id="mm_sketch">
-            <img class="pub-thumb" src="images/mm_sketch.jpg" width="1498" height="390" loading="lazy" decoding="async" alt="Sketch recognition model illustration">
+            <img class="pub-thumb" src="images/optimized/mm_sketch.jpg" width="1400" height="364" loading="lazy" decoding="async" alt="Sketch recognition model illustration">
             <div class="pub-body">
               <h4 class="pub-title">Sketch Recognition with Deep Visual-Sequential Fusion Model</h4>
               <p class="pub-authors">Jun-Yan He, Xiao Wu, Yu-Gang Jiang, <span class="me">Bo Zhao</span>, Qiang Peng</p>
@@ -342,7 +346,7 @@
             </div>
           </li>
           <li class="pub" id="iccv_npsm">
-            <img class="pub-thumb" src="images/iccv_npsm.jpg" width="1268" height="638" loading="lazy" decoding="async" alt="Neural person search system illustration">
+            <img class="pub-thumb" src="images/optimized/iccv_npsm.jpg" width="1268" height="638" loading="lazy" decoding="async" alt="Neural person search system illustration">
             <div class="pub-body">
               <h4 class="pub-title">Neural Person Search Machines</h4>
               <p class="pub-authors">Hao Liu, Jiashi Feng, Zequn Jie, Karlekar Jayashree, <span class="me">Bo Zhao</span>, Meibin Qi, Jianguo Jiang, Shuicheng Yan</p>
@@ -354,7 +358,7 @@
             </div>
           </li>
           <li class="pub is-selected" id="cvpr_atman">
-            <img class="pub-thumb" src="images/cvpr_atman.jpg" width="1000" height="487" loading="lazy" decoding="async" alt="Memory-augmented fashion search interface example">
+            <img class="pub-thumb" src="images/optimized/cvpr_atman.jpg" width="1000" height="487" loading="lazy" decoding="async" alt="Memory-augmented fashion search interface example">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">Memory-Augmented Attribute Manipulation Networks for Interactive Fashion Search</h4>
@@ -373,7 +377,7 @@
         <h3 class="year">2016</h3>
         <ol class="pubs">
           <li class="pub is-selected" id="tmm_dvan">
-            <img class="pub-thumb" src="images/tmm_dvan.jpg" width="1065" height="344" loading="lazy" decoding="async" alt="Diversified visual attention model illustration">
+            <img class="pub-thumb" src="images/optimized/tmm_dvan.jpg" width="1065" height="344" loading="lazy" decoding="async" alt="Diversified visual attention model illustration">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">Diversified Visual Attention Networks for Fine-Grained Object Classification</h4>
@@ -387,7 +391,7 @@
             </div>
           </li>
           <li class="pub is-selected" id="ijac_survey">
-            <img class="pub-thumb" src="images/ijac_survey.jpg" width="1074" height="528" loading="lazy" decoding="async" alt="Fine-grained classification and segmentation examples">
+            <img class="pub-thumb" src="images/optimized/ijac_survey.jpg" width="1074" height="528" loading="lazy" decoding="async" alt="Fine-grained classification and segmentation examples">
             <div class="pub-body">
               <p class="pub-flag"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Selected</p>
               <h4 class="pub-title">A Survey on Deep Learning-Based Fine-Grained Object Classification and Semantic Segmentation</h4>
@@ -401,7 +405,7 @@
             </div>
           </li>
           <li class="pub" id="tmm_coseg">
-            <img class="pub-thumb" src="images/tmm_coseg.jpg" width="1011" height="293" loading="lazy" decoding="async" alt="Clothing cosegmentation result for a shopping image">
+            <img class="pub-thumb" src="images/optimized/tmm_coseg.jpg" width="1011" height="293" loading="lazy" decoding="async" alt="Clothing cosegmentation result for a shopping image">
             <div class="pub-body">
               <h4 class="pub-title">Clothing Cosegmentation for Shopping Images</h4>
               <p class="pub-authors"><span class="me">Bo Zhao</span>, Xiao Wu, Qiang Peng, Shuicheng Yan</p>
@@ -419,7 +423,7 @@
         <h3 class="year">2014</h3>
         <ol class="pubs">
           <li class="pub" id="ism_rbs">
-            <img class="pub-thumb" src="images/ism_rbs.jpg" width="1202" height="506" loading="lazy" decoding="async" alt="Clothing extraction result from a shopping image">
+            <img class="pub-thumb" src="images/optimized/ism_rbs.jpg" width="1202" height="506" loading="lazy" decoding="async" alt="Clothing extraction result from a shopping image">
             <div class="pub-body">
               <h4 class="pub-title">Clothing Extraction Using Region-Based Segmentation and Pixel-Level Refinement</h4>
               <p class="pub-authors">Zhaorui Liu, Xiao Wu, <span class="me">Bo Zhao</span>, Qiang Peng</p>
@@ -437,7 +441,7 @@
         <h3 class="year">2013</h3>
         <ol class="pubs">
           <li class="pub" id="mmm_cloext">
-            <img class="pub-thumb" src="images/mmm_cloext.jpg" width="1688" height="682" loading="lazy" decoding="async" alt="Clothing extraction example using coarse localization and fine segmentation">
+            <img class="pub-thumb" src="images/optimized/mmm_cloext.jpg" width="1400" height="566" loading="lazy" decoding="async" alt="Clothing extraction example using coarse localization and fine segmentation">
             <div class="pub-body">
               <h4 class="pub-title">Clothing Extraction by Coarse Region Localization and Fine Foreground/Background Estimation</h4>
               <p class="pub-authors">Xiao Wu, <span class="me">Bo Zhao</span>, Ling-Ling Liang, Qiang Peng</p>
