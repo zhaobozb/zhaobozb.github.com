@@ -37,17 +37,19 @@ jobs:
         run: python3 tools/check_links.py "$SITE_DIR"
 
       - name: Stamp last-updated date
-        # Writes the latest commit's date into the homepage footer so it never needs hand-editing.
+        # Writes the latest commit's month and year into the homepage footer ("November 2026"),
+        # so it never needs hand-editing.
         run: |
           page="$SITE_DIR/index.html"
-          iso=$(git log -1 --format=%cs)
-          human=$(date -u -d "$iso" '+%B %-d, %Y')
+          iso=$(git log -1 --format=%cs)          # e.g. 2026-11-22
+          month=${iso%-*}                         # e.g. 2026-11
+          human=$(date -u -d "$iso" '+%B %Y')     # e.g. November 2026
           year=${iso%%-*}
           sed -i -E \
-            -e "s#<time class=\"last-updated\" datetime=\"[^\"]*\">[^<]*</time>#<time class=\"last-updated\" datetime=\"$iso\">$human</time>#" \
+            -e "s#<time class=\"last-updated\" datetime=\"[^\"]*\">[^<]*</time>#<time class=\"last-updated\" datetime=\"$month\">$human</time>#" \
             -e "s#<span class=\"copyright-year\">[^<]*</span>#<span class=\"copyright-year\">$year</span>#" \
             "$page"
-          grep -q "datetime=\"$iso\">$human</time>" "$page" || { echo "::error::Footer date placeholder not found in $page"; exit 1; }
+          grep -q "datetime=\"$month\">$human</time>" "$page" || { echo "::error::Footer date placeholder not found in $page"; exit 1; }
           echo "Footer stamped: $human"
 
       - name: Setup Pages

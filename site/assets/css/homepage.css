@@ -488,12 +488,6 @@ a {
   padding-top: 0.85rem;
 }
 
-.pills-compact li.pill-accent {
-  border-color: transparent;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-weight: 600;
-}
 
 .pills-compact li {
   padding: 0.1rem 0.5rem;
