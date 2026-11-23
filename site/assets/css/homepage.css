@@ -385,21 +385,22 @@ a {
   border-radius: 8px;
   color: var(--muted);
   text-decoration: none;
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease,
-    transform 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
 .profile-link .icon {
   width: 1.05rem;
   height: 1.05rem;
   transform: translateY(2px);
+  transition: transform 150ms ease;
 }
 
 .profile-link:hover {
-  transform: translateY(-2px);
-  border-color: var(--line);
-  background: var(--surface);
   color: var(--accent);
+}
+
+.profile-link:hover .icon {
+  transform: translateY(0);
 }
 
 .profile-link:focus-visible {
