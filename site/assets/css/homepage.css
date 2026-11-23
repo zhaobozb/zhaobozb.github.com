@@ -397,10 +397,6 @@ a {
   margin-top: 1rem;
 }
 
-.prose > p {
-  max-width: 72ch;
-}
-
 .prose a {
   color: var(--ink);
   text-decoration: underline;
@@ -655,7 +651,7 @@ a {
 
 .pub {
   display: grid;
-  grid-template-columns: 168px minmax(0, 1fr);
+  grid-template-columns: 198px minmax(0, 1fr);
   gap: 1.25rem;
   margin-inline: -0.75rem;
   padding: 1rem 0.75rem;
@@ -673,7 +669,8 @@ a {
 
 .pub-thumb {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
+  min-height: 120px;
   padding: 0.35rem;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -846,6 +843,8 @@ a {
   }
 
   .pub-thumb {
+    height: auto;
+    min-height: 0;
     aspect-ratio: auto;
   }
 }
