@@ -909,14 +909,146 @@ a {
 }
 
 @media print {
+  @page {
+    size: letter;
+    margin: 0.55in 0.6in;
+  }
+
+  :root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    --bg: #fff;
+    --surface: #fff;
+    --ink: #111;
+    --text: #222;
+    --muted: #444;
+    --line: #bbb;
+    --accent: #222;
+    --accent-soft: #f2f2f2;
+    --thumb-bg: #fff;
+  }
+
+  body {
+    background: #fff;
+    color: #222;
+    font-size: 9.5pt;
+    line-height: 1.4;
+    -webkit-font-smoothing: auto;
+  }
+
+  .page {
+    max-width: none;
+    padding-inline: 0;
+  }
+
   .topbar,
   .skip-link,
   .profile-links {
     display: none;
   }
 
+  .hero {
+    grid-template-columns: 0.85in minmax(0, 1fr);
+    gap: 0.2in;
+    padding-block: 0 0.2in;
+  }
+
+  .avatar {
+    width: 0.85in;
+    height: 0.85in;
+    box-shadow: none;
+  }
+
+  .hero-name-row h1,
+  .hero-name-row .name-chinese {
+    transform: none;
+  }
+
+  .section {
+    padding-block: 0.2in;
+    border-color: #bbb;
+  }
+
+  .section h2 {
+    margin-bottom: 0.1in;
+    font-size: 15pt;
+  }
+
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.1in;
+  }
+
+  .work-card {
+    padding: 0.12in;
+    border-color: #bbb;
+    border-radius: 0;
+    background: #fff;
+  }
+
+  .work-icon {
+    background: #f2f2f2;
+    color: #222;
+  }
+
+  .pills li {
+    border-color: #bbb;
+    background: #fff;
+    color: #222;
+  }
+
+  .year-group {
+    grid-template-columns: 0.45in minmax(0, 1fr);
+    gap: 0.1in;
+  }
+
+  .year-group + .year-group {
+    margin-top: 0.12in;
+  }
+
+  .year {
+    position: static;
+    padding-top: 0.08in;
+  }
+
   .pub {
+    grid-template-columns: 1.15in minmax(0, 1fr);
+    gap: 0.12in;
+    margin: 0;
+    padding: 0.1in 0;
+    border-radius: 0;
     break-inside: avoid;
+  }
+
+  .pub-thumb {
+    height: 0.75in;
+    min-height: 0;
+    padding: 0.03in;
+    border-color: #bbb;
+    border-radius: 0;
+    background: #fff;
+    object-fit: contain;
+  }
+
+  .pub-title {
+    font-size: 10pt;
+  }
+
+  .pub-authors,
+  .pub-venue {
+    font-size: 8.5pt;
+  }
+
+  .pub-links a {
+    padding: 0;
+    border: 0;
+    color: #111;
+    text-decoration: underline;
+  }
+
+  .footer {
+    padding: 0.15in 0 0;
+    border-color: #bbb;
   }
 
   #publications .year-group,
