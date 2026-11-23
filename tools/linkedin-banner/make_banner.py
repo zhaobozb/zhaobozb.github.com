@@ -1,7 +1,10 @@
 """Generate the LinkedIn banner (1584x396) matching the zhaobo.me dark theme.
 
 Usage:
-    python3 make_banner.py
+    python3 make_banner.py [--preview]
+
+--preview also writes preview-mobile-*.png: mocks of the LinkedIn iOS app header (430pt and
+390pt-wide phones), where most visitors see the banner.
 
 Writes, next to this file:
     banner-final.svg      vector source
@@ -18,6 +21,7 @@ path runs through it to an output node, which opens into a probabilistic forecas
 import math
 import os
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -31,19 +35,22 @@ FONT = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Inter, 
 
 # LinkedIn desktop profile photo, measured in banner coordinates (incl. white border).
 PHOTO_C, PHOTO_R = (208, 364), 160
+# On the iOS app the banner is shown ~430pt wide (0.27x), and the photo sits lower/further right:
+# centre ~(250, 410), radius ~190 (430pt phone) up to ~(276, 413), r ~210 (390pt phone).
+# Anything in that disc is hidden on mobile; everything else must survive a 0.27x downscale.
 
 TITLE = "Financial Foundation Models"
 SUBTITLE = "From Research to Production"
 URL = "zhaobo.me"
 
-# Text layout (right-aligned at TEXT_R). Title and subtitle are grouped; the pill sits apart,
-# with its bottom (~224) clear of the forecast band.
-TEXT_R = 1500
-TITLE_SIZE, TITLE_Y = 39, 110
-SUB_SIZE, SUB_Y = 29, 155
-PILL_TOP, PILL_H = 182, 42
-URL_SIZE, URL_W = 23, 121  # URL_W: measured width of URL at URL_SIZE in Chrome
-GLOBE, ARROW = 20, 17      # icon sizes in px
+# Text layout (right-aligned at TEXT_R). Sized for the phone: at 0.27x the title renders ~16pt
+# and the subtitle ~10pt. The pill bottom (~234) stays clear of the forecast band.
+TEXT_R = 1504
+TITLE_SIZE, TITLE_Y = 60, 104
+SUB_SIZE, SUB_Y = 38, 156
+PILL_TOP, PILL_H = 182, 52
+URL_SIZE, URL_W = 30, 157  # URL_W: measured width of URL at URL_SIZE in Chrome
+GLOBE, ARROW = 26, 21      # icon sizes in px
 
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
@@ -109,23 +116,23 @@ def text_block(out) -> None:
     # --- Title and subtitle (upper right, clear of the photo and LinkedIn's buttons)
     out.append(f'<g font-family="{FONT}" text-anchor="end">')
     out.append(
-        f'<text x="{TEXT_R}" y="{TITLE_Y}" fill="{INK}" font-size="{TITLE_SIZE}" font-weight="650" '
-        f'letter-spacing="-0.6">{TITLE}</text>'
+        f'<text x="{TEXT_R}" y="{TITLE_Y}" fill="{INK}" font-size="{TITLE_SIZE}" font-weight="700" '
+        f'letter-spacing="-1">{TITLE}</text>'
     )
     out.append(
-        f'<text x="{TEXT_R}" y="{SUB_Y}" fill="{SUBTLE}" font-size="{SUB_SIZE}" font-weight="450">{SUBTITLE}</text>'
+        f'<text x="{TEXT_R}" y="{SUB_Y}" fill="{SUBTLE}" font-size="{SUB_SIZE}" font-weight="500">{SUBTITLE}</text>'
     )
     out.append("</g>")
 
     # --- URL as a link-style pill: globe icon + URL + up-right arrow, laid out right-to-left
     cy = PILL_TOP + PILL_H / 2
-    arrow_x = TEXT_R - 16 - ARROW
-    text_end = arrow_x - 8
-    globe_x = text_end - URL_W - 9 - GLOBE
-    left = globe_x - 14
+    arrow_x = TEXT_R - 20 - ARROW
+    text_end = arrow_x - 10
+    globe_x = text_end - URL_W - 11 - GLOBE
+    left = globe_x - 18
     out.append(
         f'<rect x="{left}" y="{PILL_TOP}" width="{TEXT_R - left}" height="{PILL_H}" rx="{PILL_H / 2}" '
-        f'fill="{ACCENT}" fill-opacity="0.12" stroke="{ACCENT}" stroke-opacity="0.6" stroke-width="1.5"/>'
+        f'fill="{ACCENT}" fill-opacity="0.14" stroke="{ACCENT}" stroke-opacity="0.75" stroke-width="2.5"/>'
     )
     out.append(
         f'<g transform="translate({globe_x},{cy - GLOBE / 2}) scale({GLOBE / 24:.4f})" fill="none" '
@@ -146,8 +153,8 @@ def text_block(out) -> None:
 
 def port_dot(out, p):
     """White dot with a soft accent halo, used at the network input (photo) and output nodes."""
-    out.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="10" fill="{ACCENT}" fill-opacity="0.22"/>')
-    out.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="4.5" fill="{INK}"/>')
+    out.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="15" fill="{ACCENT}" fill-opacity="0.22"/>')
+    out.append(f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="7" fill="{INK}"/>')
 
 
 def fan_chart(out, o, end_x=W + 20, steps=17) -> None:
@@ -165,28 +172,29 @@ def fan_chart(out, o, end_x=W + 20, steps=17) -> None:
         return smooth_path(upper) + " L" + " L".join(f"{x:.1f},{y:.1f}" for x, y in reversed(lower)) + " Z"
 
     out.append(
-        f'<line x1="{o[0]}" y1="232" x2="{o[0]}" y2="372" stroke="#ffffff" stroke-opacity="0.18" '
-        f'stroke-dasharray="2 5"/>'
+        f'<line x1="{o[0]}" y1="244" x2="{o[0]}" y2="372" stroke="#ffffff" stroke-opacity="0.22" '
+        f'stroke-width="1.5" stroke-dasharray="3 6"/>'
     )
     out.append(f'<path d="{band(p90, p10)}" fill="{ACCENT}" fill-opacity="0.08"/>')
     out.append(f'<path d="{band(p75, p25)}" fill="{ACCENT}" fill-opacity="0.16"/>')
     for line, op in ((p90, 0.28), (p10, 0.28), (p75, 0.45), (p25, 0.45)):
         out.append(f'<path d="{smooth_path(line)}" fill="none" stroke="{ACCENT}" stroke-opacity="{op}" '
-                   f'stroke-width="1"/>')
-    out.append(f'<path d="{smooth_path(med)}" fill="none" stroke="{ACCENT}" stroke-width="2.2" '
-               f'stroke-dasharray="7 7" stroke-linecap="round"/>')
+                   f'stroke-width="1.6"/>')
+    out.append(f'<path d="{smooth_path(med)}" fill="none" stroke="{ACCENT}" stroke-width="3.6" '
+               f'stroke-dasharray="11 10" stroke-linecap="round"/>')
 
 
 def network(out) -> None:
-    """Deep learning: a small layered network. The photo is the input; a prediction exits right."""
+    """Deep learning: a small layered network. The photo is the input; a prediction exits right.
+    Strokes and nodes are oversized so they still read at the phone's 0.27x scale."""
     out.append(f'<rect width="{W}" height="{H}" fill="url(#halo)"/>')
-    xs, counts = [500, 615, 730, 845, 945], [4, 6, 6, 4, 2]
-    cy0, gap = 220, 46
+    xs, counts = [480, 585, 690, 795, 890], [4, 6, 6, 4, 2]
+    cy0, gap = 238, 40
     layers = [[(x, cy0 + (i - (n - 1) / 2) * gap) for i in range(n)] for x, n in zip(xs, counts)]
     path_idx = [2, 4, 2, 1, 1]
     path = [layers[k][i] for k, i in enumerate(path_idx)]
 
-    g = ['<g stroke="#ffffff" stroke-opacity="0.07" stroke-width="1">']
+    g = ['<g stroke="#ffffff" stroke-opacity="0.11" stroke-width="1.4">']
     for a, b in zip(layers, layers[1:]):
         for x1, y1 in a:
             for x2, y2 in b:
@@ -194,34 +202,36 @@ def network(out) -> None:
     g.append("</g>")
     out += g
 
-    port = ring_point(-30, PHOTO_R + 10)
+    # Inputs start at the photo centre, so they always appear to emerge from the photo's rim,
+    # wherever LinkedIn places it (desktop vs. mobile app).
+    port = PHOTO_C
     for x, y in layers[0]:
         out.append(
             f'<line x1="{port[0]:.1f}" y1="{port[1]:.1f}" x2="{x}" y2="{y:.1f}" stroke="{ACCENT}" '
-            f'stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 5"/>'
+            f'stroke-opacity="0.5" stroke-width="2" stroke-dasharray="5 7"/>'
         )
     pts = [port] + path
     d = " ".join(f"{'M' if i == 0 else 'L'}{x:.1f},{y:.1f}" for i, (x, y) in enumerate(pts))
-    out.append(f'<path d="{d}" fill="none" stroke="{ACCENT}" stroke-opacity="0.9" stroke-width="2.2" '
+    out.append(f'<path d="{d}" fill="none" stroke="{ACCENT}" stroke-opacity="0.95" stroke-width="3.6" '
                f'stroke-linejoin="round"/>')
 
     # Output node, then a probabilistic forecast (quantile fan chart) to the right
-    o = (1050, 300)
+    o = (990, 300)
     for x, y in layers[-1]:
         on_path = (x, y) == path[-1]
         out.append(f'<line x1="{x}" y1="{y:.1f}" x2="{o[0]}" y2="{o[1]}" stroke="{ACCENT if on_path else "#ffffff"}" '
-                   f'stroke-opacity="{0.9 if on_path else 0.12}" stroke-width="{2.2 if on_path else 1}"/>')
+                   f'stroke-opacity="{0.95 if on_path else 0.16}" stroke-width="{3.6 if on_path else 1.4}"/>')
     fan_chart(out, o)
 
     for li, layer in enumerate(layers):
         for x, y in layer:
             hot = (x, y) == path[li]
             if hot:
-                out.append(f'<circle cx="{x}" cy="{y:.1f}" r="14" fill="{ACCENT}" fill-opacity="0.14"/>')
-            out.append(f'<circle cx="{x}" cy="{y:.1f}" r="6.5" fill="{ACCENT if hot else BG1}" '
-                       f'stroke="{ACCENT if hot else "#ffffff"}" stroke-opacity="{1 if hot else 0.35}" stroke-width="1.2"/>')
+                out.append(f'<circle cx="{x}" cy="{y:.1f}" r="19" fill="{ACCENT}" fill-opacity="0.16"/>')
+            out.append(f'<circle cx="{x}" cy="{y:.1f}" r="{10 if hot else 8}" fill="{ACCENT if hot else BG1}" '
+                       f'stroke="{ACCENT if hot else "#ffffff"}" stroke-opacity="{1 if hot else 0.45}" '
+                       f'stroke-width="1.8"/>')
     port_dot(out, o)
-    port_dot(out, port)
 
 
 def render_png(svg: str, dest: Path, scale: int) -> None:
@@ -237,6 +247,34 @@ def render_png(svg: str, dest: Path, scale: int) -> None:
         subprocess.run(
             [CHROME, "--headless=new", "--hide-scrollbars", f"--window-size={W},{H}",
              f"--force-device-scale-factor={scale}", f"--screenshot={dest}", page.as_uri()],
+            check=True, capture_output=True,
+        )
+    finally:
+        page.unlink(missing_ok=True)
+
+
+def render_mobile_preview(banner_png: Path, dest: Path, phone_w: int = 430) -> None:
+    """Mock of the LinkedIn iOS app profile header: the banner drawn phone_w pt wide with the
+    profile photo overlaid where the app puts it (measured on a 430pt-wide iPhone)."""
+    bh = phone_w * H / W
+    r, cx, cy = 51.7, 68.0, bh + 4.2  # photo radius incl. white border, centre (pt)
+    html = f"""<!doctype html><meta charset='utf-8'><style>
+      html,body{{margin:0;background:#fff;font-family:{FONT}}}
+      .b{{position:relative;width:{phone_w}px;height:{bh + 150:.1f}px}}
+      img{{width:{phone_w}px;display:block}}
+      .p{{position:absolute;left:{cx - r}px;top:{cy - r}px;width:{2 * r}px;height:{2 * r}px;border-radius:50%;
+         background:#3a3d44;box-shadow:0 0 0 3px #fff inset}}
+      .n{{position:absolute;left:16px;top:{bh + 70:.1f}px;font-size:24px;font-weight:600}}
+    </style><div class='b'><img src='{banner_png.resolve().as_uri()}'><div class='p'></div>
+    <div class='n'>Bo Zhao</div></div>"""
+    with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False) as f:
+        f.write(html)
+        page = Path(f.name)
+    try:
+        subprocess.run(
+            [CHROME, "--headless=new", "--hide-scrollbars", "--allow-file-access-from-files",
+             f"--window-size={phone_w},{int(bh + 150)}", "--force-device-scale-factor=3",
+             f"--screenshot={dest}", page.as_uri()],
             check=True, capture_output=True,
         )
     finally:
@@ -259,3 +297,7 @@ if __name__ == "__main__":
     render_png(svg, here / "banner-final.png", 1)
     render_png(svg, here / "banner-final@2x.png", 2)
     print("wrote banner-final.svg, banner-final.png, banner-final@2x.png")
+    if "--preview" in sys.argv:
+        render_mobile_preview(here / "banner-final@2x.png", here / "preview-mobile-430.png", 430)
+        render_mobile_preview(here / "banner-final@2x.png", here / "preview-mobile-390.png", 390)
+        print("wrote preview-mobile-430.png, preview-mobile-390.png (not for upload)")
