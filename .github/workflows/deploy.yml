@@ -1,5 +1,6 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# Deploys the static site in site/ to GitHub Pages.
+# The site is plain HTML/CSS, so there is no build step: the folder is uploaded as-is.
+name: Deploy site to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -21,36 +22,42 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  SITE_DIR: site
+
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Check local links
+        # Fails the deploy if the site links to a file that does not exist.
+        run: python3 tools/check_links.py "$SITE_DIR"
+
       - name: Stamp last-updated date
         # Writes the latest commit's date into the homepage footer so it never needs hand-editing.
         run: |
+          page="$SITE_DIR/index.html"
           iso=$(git log -1 --format=%cs)
           human=$(date -u -d "$iso" '+%B %-d, %Y')
           year=${iso%%-*}
           sed -i -E \
             -e "s#<time class=\"last-updated\" datetime=\"[^\"]*\">[^<]*</time>#<time class=\"last-updated\" datetime=\"$iso\">$human</time>#" \
             -e "s#<span class=\"copyright-year\">[^<]*</span>#<span class=\"copyright-year\">$year</span>#" \
-            index.html
-          grep -q "datetime=\"$iso\">$human</time>" index.html || { echo "::error::Footer date placeholder not found in index.html"; exit 1; }
+            "$page"
+          grep -q "datetime=\"$iso\">$human</time>" "$page" || { echo "::error::Footer date placeholder not found in $page"; exit 1; }
           echo "Footer stamped: $human"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE_DIR }}
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
